@@ -16,6 +16,7 @@ class ProductsCollectionResource extends Resource
     {
         // return parent::toArray($request);
         return [
+            'id'=>$this->id,
             'name'=> $this->name,
             'totalPrice' => round((1-$this->discount/100)*$this->price,2),
             'star'=> round(($this->reviews->sum('star'))/($this->reviews->count())),
