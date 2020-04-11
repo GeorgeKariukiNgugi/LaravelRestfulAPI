@@ -19,7 +19,7 @@ class CreateCartsTable extends Migration
             $table->integer('quantity');
 
             // ! foreign key that references the product table. 
-            $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('productId')->references('id')->on('products');
 
             $table->timestamps();
             

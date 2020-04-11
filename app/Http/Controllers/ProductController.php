@@ -6,6 +6,8 @@ use App\model\Product;
 use Illuminate\Http\Request;
 use App\Http\Resources\Product\ProductResource;
 use App\Http\Resources\Product\ProductsCollectionResource;
+use App\Http\Requests\addingProduct;
+use App\Http\Requests\udatingProduct;
 class ProductController extends Controller
 {
     /**
@@ -36,9 +38,20 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(addingProduct $request)
     {
-        //
+        $newProduct = new Product();
+        $newProduct->name= $request->name;
+        $newProduct->description= $request->description;
+        $newProduct->price = $request->price;
+        $newProduct->discount= $request->discount;
+        $newProduct->stock= $request->stock;
+
+        $newProduct->save();
+
+        return response([
+            'data'=> new ProductsCollectionResource($newProduct)
+        ], 201);
     }
 
     /**
@@ -72,9 +85,14 @@ class ProductController extends Controller
      * @param  \App\model\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(udatingProduct $request, Product $product)
     {
-        //
+
+        $product->update($request->all());
+        return response(
+          ['data'=> new ProductsCollectionResource($product)
+        ], 201);
+        
     }
 
     /**
@@ -85,6 +103,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return response(
+            null, 204
+        );
     }
 }
