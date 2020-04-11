@@ -41,7 +41,7 @@ class ProductController extends Controller
     public function store(addingProduct $request)
     {
 
-        return "Hit storing end point.";
+        // return "Hit storing end point.";
         $newProduct = new Product();
         $newProduct->name= $request->name;
         $newProduct->description= $request->description;
