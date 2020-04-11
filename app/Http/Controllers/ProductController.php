@@ -40,6 +40,8 @@ class ProductController extends Controller
      */
     public function store(addingProduct $request)
     {
+
+        return "Hit storing end point.";
         $newProduct = new Product();
         $newProduct->name= $request->name;
         $newProduct->description= $request->description;
@@ -64,6 +66,7 @@ class ProductController extends Controller
     {
         //
         // return $product;
+        return "Hit showing single  end point.";
         return new ProductResource($product);
     }
 
@@ -88,6 +91,7 @@ class ProductController extends Controller
     public function update(udatingProduct $request, Product $product)
     {
 
+        return "Hit update end point.";
         $product->update($request->all());
         return response(
           ['data'=> new ProductsCollectionResource($product)
@@ -103,6 +107,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        return "Hit deleting end point.";
         $product->delete();
         return response(
             null, 204
