@@ -52,7 +52,7 @@ class ProductController extends Controller
         $newProduct->save();
 
         return response([
-            'data'=> new ProductsCollectionResource($newProduct)
+            null
         ], 201);
     }
 
@@ -93,9 +93,7 @@ class ProductController extends Controller
 
         // return "Hit update end point.";
         $product->update($request->all());
-        return response(
-          ['data'=> new ProductsCollectionResource($product)
-        ], 201);
+        return response(null, 201);
         
     }
 

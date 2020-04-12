@@ -35,7 +35,13 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cart = new Cart();
+        $cart->productId = $request->productId;
+        $cart->quantity =   $request->quantity;
+
+        $cart->save();
+
+        return response(null,201);
     }
 
     /**
@@ -46,7 +52,7 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        //
+        return response(new cartResource($cart),201);
     }
 
     /**
@@ -69,7 +75,8 @@ class CartController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
-        //
+        $cart->update($request->all());
+        return response(null,201);
     }
 
     /**
@@ -80,6 +87,7 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        //
+        $cart->delete();
+        return response(null, 204);
     }
 }
