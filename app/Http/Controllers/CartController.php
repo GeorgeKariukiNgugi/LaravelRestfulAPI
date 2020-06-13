@@ -76,7 +76,7 @@ class CartController extends Controller
     public function update(Request $request, Cart $cart)
     {
         $cart->update($request->all());
-        return response(null,201);
+        return response(cartResource::collection(Cart::all()),201);
     }
 
     /**
