@@ -88,7 +88,7 @@ class CartController extends Controller
     public function destroy(Cart $cart)
     {
         $cart->delete();
-        return response(null, 204);
+        return response(cartResource::collection(Cart::all()), 204);
     }
 
     public function unique(){
