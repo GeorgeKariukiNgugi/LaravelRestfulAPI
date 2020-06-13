@@ -40,8 +40,8 @@ class CartController extends Controller
         $cart->quantity =   $request->quantity;
 
         $cart->save();
-
-        return response(null,201);
+        
+        return response(cartResource::collection(Cart::all()),201);
     }
 
     /**
