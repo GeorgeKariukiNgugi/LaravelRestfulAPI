@@ -90,4 +90,8 @@ class CartController extends Controller
         $cart->delete();
         return response(null, 204);
     }
+
+    public function unique(){
+        
+    }
 }

@@ -15,6 +15,7 @@ class cartResource extends Resource
     public function toArray($request)
     {
         return [
+            'id'=>$this->id,
             'name'=> $this->product->name,
             'quantity' => $this->quantity,
             'price'=> $this->product->price,
