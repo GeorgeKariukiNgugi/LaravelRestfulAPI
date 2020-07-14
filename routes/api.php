@@ -18,8 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //! Initializing the api controllers.
-Route::post('/register', 'Api\AuthController@register');
-Route::post('/login', 'Api\AuthController@login');
+Route::post('/register', 'API\AuthController@register');
+Route::post('/login', 'API\AuthController@login');
 
 Route::middleware('auth:api')->group( function () {
 
