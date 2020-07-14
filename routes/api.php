@@ -18,15 +18,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //! Initializing the api controllers.
+Route::post('/register', 'Api\AuthController@register');
+Route::post('/login', 'Api\AuthController@login');
 
-Route::apiResource('/products','ProductController');
+Route::middleware('auth:api')->group( function () {
 
-Route::group(['prefix' => 'products'], function () {
-    Route::apiResource('/{product}/review','ReviewController');
-});
+    // Route::resource('products', 'API\ProductController');
+    Route::apiResource('/products','ProductController');
+    Route::group(['prefix' => 'products'], function () {
+        Route::apiResource('/{product}/review','ReviewController');
+    });
 
-// ! this apiRoute will be used to fetch the cart Items of the application.
+    // ! this apiRoute will be used to fetch the cart Items of the application.
 
 Route::apiResource('/cart','CartController');
+
+});
 
 
